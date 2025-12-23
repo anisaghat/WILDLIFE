@@ -1,0 +1,22 @@
+A FAIRE
+ méthode Tostring + equals pour chaque classe
+
+ test unitaire pour chaque entité instanciable
+
+ //LOGIN developpement des classes de login, nécessaire à l'entrée en session de l'application en respectan
+ le patron de conception template method
+ voir notes de madani sur design pattern
+ login et mdp seront stockés en mémoire dans un conteneur
+
+De créer les boites de dialogues (JDialog) modales personnalisées de votre application :
+chacune de ces classes disposera d’une méthode main de test permettant de faire apparaître
+la boite de dialogue, saisir les données et récupérer ces données dans le main de test (voir
+https://github.com/hepl-mesProjets/MVC_SOLID pour des exemples) → pas de tests
+unitaires avec JUnit ici !
+
+
+Il ne s’agit pas ici de gérer tous les événements de votre fenêtre principale. Vous devez voir cette
+étape comme la conception de la « maquette » de votre application. Aucun lien ne doit encore être
+fait entre vos classes graphiques et vos classes métiers, ce qui permet un découpage net entre la
+couche graphique de l’application (« GUI » pour Graphic User Interface » - la vue) et la couche
+des données (communément appelée « DAL » pour Data Access Layer » - le modèle).
