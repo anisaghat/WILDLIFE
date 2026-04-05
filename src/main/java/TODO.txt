@@ -1,17 +1,33 @@
 ***** TO DO *****
 
-remplir les tests, j'ai juste generer mais rien écrit dedans
+-> remplir les tests, j'ai juste generer mais rien écrit dedans
 
-DAO pour le couo je suis pas sure de comment ça marche parce que j'ai de l'héritage dans mes classes, du coup je sais pas si je dois faire un DAO pour chaque classe ou juste un seul DAO pour la classe parent et après les classes enfants vont hériter de ce DAO ou pas du tout, à voir
-
-
-
+-> POSSIBILITé PAR APRES : SAUVEGARDE EN BASE DE DONNEE
 gérer la connexion à la DB (presque fini mais regarde le fichier)
 faire du coup aussi 1 script de création de toutes les entités dans la bd (id auto increment) clé étrangère
 
-faire que quand on appuie sur la croix ça nous déconnecte de la session et nous redirige vers la page de login
-dans le login faudra aussi supprimer l'user de la map mais je suis pas sure : à vérifier
 
-DB c'est pas nécessaire : pr l'instant sauvegarder les données dans des fichiers csv
+************************************************************************************************
+************************************************************************************************
+************************************************************************************************
+
 
 UUID pour les id? à voir
+
+
+
+Etape 4 : Développement des classes graphiques de l’application
+En parallèle, vous devez créer l’interface graphique de base de votre application. On vous demande
+• De créer un package GUI (ou View – voir capture ci-dessus) qui contiendra toutes les
+classes graphiques de votre application.
+• De créer la JFrame principale de votre application.
+• De créer les boites de dialogues (JDialog) modales personnalisées de votre application :
+chacune de ces classes disposera d’une méthode main de test permettant de faire apparaître
+la boite de dialogue, saisir les données et récupérer ces données dans le main de test (voir
+https://github.com/hepl-mesProjets/MVC_SOLID pour des exemples) → pas de tests
+unitaires avec JUnit ici !
+Il ne s’agit pas ici de gérer tous les événements de votre fenêtre principale. Vous devez voir cette
+étape comme la conception de la « maquette » de votre application. Aucun lien ne doit encore être
+fait entre vos classes graphiques et vos classes métiers, ce qui permet un découpage net entre la
+couche graphique de l’application (« GUI » pour Graphic User Interface » - la vue) et la couche
+des données (communément appelée « DAL » pour Data Access Layer » - le modèle)

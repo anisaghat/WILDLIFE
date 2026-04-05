@@ -3,7 +3,12 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javafx.application.*;
+
+import static java.lang.System.exit;
 
 
 public class LOGIN extends JDialog {
@@ -20,6 +25,14 @@ public class LOGIN extends JDialog {
         setModal(true);
         setSize(400,300);
         setLocationRelativeTo(null);
+        getRootPane().setDefaultButton(enterButton); // pour se connecter en appuyant sur enter directement
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
     }
 
     public void addLoginListener(ActionListener listener) {

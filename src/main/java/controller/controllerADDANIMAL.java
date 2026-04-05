@@ -13,4 +13,6 @@ public class controllerADDANIMAL {
         this.navigator = navigator;
     }
 
+    // reprendre toutes les infos du formulaire puis
+
 }

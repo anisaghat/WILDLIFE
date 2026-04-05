@@ -1,9 +1,14 @@
 package model.dao_csv;
 
+import model.entities.Biome;
+
+import java.util.List;
+
 public interface  IDAO<T> {
-    void create(T entity);
-    T read(Integer id);
-    void update(T entity);
-    void delete(Integer id);
-    void getById(String s);
+    int create(T entity);
+    boolean update(T entity);
+    boolean deleteById(Integer id);
+    boolean deleteByObject(T entity);
+    T findById(Integer id);
+    List<T> findAll();
 }

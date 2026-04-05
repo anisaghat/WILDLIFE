@@ -9,6 +9,7 @@ public class Biome {
     private String humidity; // précipitation??
     private String dominantVegetation;
 
+
     public String getName() {
         return name;
     }

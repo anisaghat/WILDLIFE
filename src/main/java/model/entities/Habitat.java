@@ -3,9 +3,6 @@ package model.entities;
 public class Habitat {
 
     private Integer id;
-
-
-
     private String name;
     private Biome biome;
 
@@ -31,6 +28,12 @@ public class Habitat {
     public Habitat(String name, Biome biome) {
         this.name = name;
         this.biome = biome;
+    }
+
+    public Habitat(Integer id, String name, Biome biome) {
+        this.id=id;
+        this.name=name;
+        this.biome=biome;
     }
 
     @Override
