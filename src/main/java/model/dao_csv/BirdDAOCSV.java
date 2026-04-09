@@ -52,7 +52,7 @@ public class BirdDAOCSV implements IDAO<Bird> {
             }
 
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO");
         }
     }
 
@@ -69,11 +69,11 @@ public class BirdDAOCSV implements IDAO<Bird> {
                 String descriptionStr = b.getDescription() == null ? "" : b.getDescription();                String wingspanStr = String.valueOf(b.getWingspan());
                 String canFlyStr = String.valueOf(b.isCanFly());
 
-                bw.write(STR."\{idStr},\{imagePathStr},\{nameStr},\{heightStr},\{weightStr},\{statusStr},\{habitatStr},\{descriptionStr},\{wingspanStr},\{canFlyStr}");
+                bw.write(idStr + "," + imagePathStr + "," + nameStr + "," + heightStr + "," + weightStr + "," + statusStr + "," + habitatStr + "," + descriptionStr + "," + wingspanStr + "," + canFlyStr);
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO");
         }
     }
 

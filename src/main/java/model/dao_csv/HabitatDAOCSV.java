@@ -43,7 +43,7 @@ public class HabitatDAOCSV implements IDAO<Habitat> {
             }
 
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO : " + e.getMessage());
         }
     }
 
@@ -54,11 +54,11 @@ public class HabitatDAOCSV implements IDAO<Habitat> {
                 String nameStr = h.getName() == null ? "" : h.getName();
                 String biomeStr = h.getBiome() == null ? "" : h.getBiome().getId().toString();
 
-                bw.write(STR."\{idStr},\{nameStr},\{biomeStr}");
+                bw.write(idStr + "," + nameStr + "," + biomeStr);
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO : " + e.getMessage());
         }
     }
 

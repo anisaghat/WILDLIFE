@@ -5,15 +5,15 @@ import app.AppNavigator;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 public class MAINVIEW  extends JFrame {
-    private JButton buttonAdd;
+    private JButton buttonAddAnimal;
     private JButton buttonDisplayMap;
     private JTable table;
     private JPanel mainPanel;
     private JButton buttonLogout;
     private JButton buttonEndangeredAnimals;
+    private JButton buttonAddBiome;
 
     private final AppNavigator navigator;
 
@@ -27,7 +27,8 @@ public class MAINVIEW  extends JFrame {
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        buttonAdd.addActionListener( e -> navigator.showAddAnimalForm());
+        buttonAddAnimal.addActionListener( e -> navigator.showAddAnimalForm());
+        buttonAddBiome.addActionListener(e -> navigator.showAddBiomeForm());
         buttonLogout.addActionListener( e -> logout());
 
         addWindowListener(new WindowAdapter() {

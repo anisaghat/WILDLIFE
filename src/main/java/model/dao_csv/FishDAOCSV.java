@@ -53,7 +53,7 @@ public class FishDAOCSV implements IDAO<Fish> {
             }
 
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO");
         }
     }
 
@@ -71,11 +71,11 @@ public class FishDAOCSV implements IDAO<Fish> {
                 String descriptionStr = f.getDescription() == null ? "" : f.getDescription();                String typeOfWaterStr = f.getTypeOfWater() == null ? "" : f.getTypeOfWater();
                 String bonesStr = f.getBones() == null ? "" : f.getBones();
 
-                bw.write(STR."\{idStr},\{imagePathStr},\{nameStr},\{heightStr},\{weightStr},\{statusStr},\{depthStr},\{habitatStr},\{descriptionStr},\{typeOfWaterStr},\{bonesStr}");
+                bw.write(idStr + "," + imagePathStr + "," + nameStr + "," + heightStr + "," + weightStr + "," + statusStr + "," + depthStr + "," + habitatStr + "," + descriptionStr + "," + typeOfWaterStr + "," + bonesStr);
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO");
         }
     }
 

@@ -81,5 +81,6 @@ public class ADDANIMAL extends JDialog
 
         setContentPane(mainPanel);
 
+
     }
 }

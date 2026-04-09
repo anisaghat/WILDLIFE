@@ -51,7 +51,7 @@ public class MammalDAOCSV implements IDAO<Mammal> {
             }
 
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO : " + e.getMessage());
         }
     }
 
@@ -67,11 +67,11 @@ public class MammalDAOCSV implements IDAO<Mammal> {
                 String habitatStr = m.getHabitat() == null ? "" : m.getHabitat().getId().toString();
                 String descriptionStr = m.getDescription() == null ? "" : m.getDescription();                String dureeGestationStr = String.valueOf(m.getDureeGestation());
 
-                bw.write(STR."\{idStr},\{imagePathStr},\{nameStr},\{heightStr},\{weightStr},\{statusStr},\{habitatStr},\{descriptionStr},\{dureeGestationStr}");
+                bw.write(idStr + "," + imagePathStr + "," + nameStr + "," + heightStr + "," + weightStr + "," + statusStr + "," + habitatStr + "," + descriptionStr + "," + dureeGestationStr);
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO : " + e.getMessage());
         }
     }
 

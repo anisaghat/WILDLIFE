@@ -41,7 +41,7 @@ public class BiomeDAOCSV implements IDAO<Biome> {
                 biomes.add(biome);
             }
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO : " + e.getMessage());
         }
     }
 
@@ -55,11 +55,11 @@ public class BiomeDAOCSV implements IDAO<Biome> {
                 String humidityStr = b.getHumidity() == null ? "" : b.getHumidity();
                 String dominantVegetationStr = b.getDominantVegetation() == null ? "" : b.getDominantVegetation();
 
-                bw.write(STR."\{idStr},\{nameStr},\{descriptionStr},\{temperatureStr},\{humidityStr},\{dominantVegetationStr}");
+                bw.write(idStr + "," + nameStr + "," + descriptionStr + "," + temperatureStr + "," + humidityStr + "," + dominantVegetationStr);
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO : " + e.getMessage());
         }
     }
 

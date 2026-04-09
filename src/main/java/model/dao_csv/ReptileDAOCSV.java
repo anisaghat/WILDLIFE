@@ -52,7 +52,7 @@ public class ReptileDAOCSV implements IDAO<Reptile> {
             }
 
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO : " + e.getMessage());
         }
     }
 
@@ -69,11 +69,11 @@ public class ReptileDAOCSV implements IDAO<Reptile> {
                 String descriptionStr = r.getDescription() == null ? "" : r.getDescription();                String reproductionStr = r.getReproduction() == null ? "" : r.getReproduction();
                 String venomousStr = String.valueOf(r.isVenomous());
 
-                bw.write(STR."\{idStr},\{imagePathStr},\{nameStr},\{heightStr},\{weightStr},\{statusStr},\{habitatStr},\{descriptionStr},\{reproductionStr},\{venomousStr}");
+                bw.write(idStr + "," + imagePathStr + "," + nameStr + "," + heightStr + "," + weightStr + "," + statusStr + "," + habitatStr + "," + descriptionStr + "," + reproductionStr + "," + venomousStr);
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO : " + e.getMessage());
         }
     }
 

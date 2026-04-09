@@ -53,7 +53,7 @@ public class AmphibianDAOCSV implements IDAO<Amphibian> {
             }
 
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO : " + e.getMessage());
         }
     }
 
@@ -71,11 +71,11 @@ public class AmphibianDAOCSV implements IDAO<Amphibian> {
                 String aquatiqueStr = String.valueOf(a.isAquatique());
                 String metamorphoseStr = String.valueOf(a.isMetamorphose());
                 String descriptionStr = a.getDescription() == null ? "" : a.getDescription();
-                bw.write(STR."\{idStr},\{imagePathStr},\{nameStr},\{heightStr},\{weightStr},\{statusStr},\{habitatStr},\{typeRespirationStr},\{aquatiqueStr},\{metamorphoseStr},\{descriptionStr}");
+                bw.write(idStr + "," + imagePathStr + "," + nameStr + "," + heightStr + "," + weightStr + "," + statusStr + "," + habitatStr + "," + typeRespirationStr + "," + aquatiqueStr + "," + metamorphoseStr + "," + descriptionStr);
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.err.println(STR."Erreur IO : \{e.getMessage()}");
+            System.err.println("Erreur IO : " + e.getMessage());
         }
     }
 

@@ -3,6 +3,7 @@ package app;
 import controller.controllerLOGIN;
 import model.authentication.MapAuthenticator;
 import view.ADDANIMAL;
+import view.ADDBIOME;
 import view.LOGIN;
 import view.MAINVIEW;
 
@@ -27,6 +28,12 @@ public class AppNavigator {
     public void showAddAnimalForm()
     {
         ADDANIMAL form = new ADDANIMAL();
+        form.setVisible(true);
+    }
+
+    public void showAddBiomeForm()
+    {
+        ADDBIOME form = new ADDBIOME();
         form.setVisible(true);
     }
 
