@@ -1,5 +1,7 @@
 package view;
 
-public class ADDBIOME {
+import javax.swing.*;
+
+public class ADDBIOME extends JFrame {
 
 }

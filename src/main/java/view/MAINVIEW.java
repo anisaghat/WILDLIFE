@@ -3,33 +3,75 @@ package view;
 import app.AppNavigator;
 
 import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class MAINVIEW  extends JFrame {
-    private JButton buttonAddAnimal;
-    private JButton buttonDisplayMap;
-    private JTable table;
-    private JPanel mainPanel;
-    private JButton buttonLogout;
-    private JButton buttonEndangeredAnimals;
-    private JButton buttonAddBiome;
+public class MAINVIEW extends JFrame {
 
     private final AppNavigator navigator;
 
-    public MAINVIEW(AppNavigator navigator)
-    {
+    private JPanel mainPanel;
+
+    private  JTable table = new JTable();
+
+    private  JButton buttonAddAnimal =
+            new JButton("Add a new animal");
+
+    private  JButton buttonAddBiome =
+            new JButton("Add a new biome");
+
+    private  JButton buttonDisplayMap =
+            new JButton("See the map");
+
+    private  JButton buttonEndangeredAnimals =
+            new JButton("See all endangered animals");
+
+    private  JButton buttonLogout =
+            new JButton("Logout");
+
+    public MAINVIEW(AppNavigator navigator) {
         this.navigator = navigator;
-        setContentPane(mainPanel);
-        setTitle("WILFLIFE");
+
+        initComponents();
+        initActions();
+    }
+
+    private void initComponents() {
+        setTitle("WILDLIFE");
+        setSize(700, 500);
         setLocationRelativeTo(null);
-        setSize(700,700);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        mainPanel = new JPanel(new BorderLayout());
 
-        buttonAddAnimal.addActionListener( e -> navigator.showAddAnimalForm());
-        buttonAddBiome.addActionListener(e -> navigator.showAddBiomeForm());
-        buttonLogout.addActionListener( e -> logout());
+        JPanel buttonsPanel = new JPanel(new FlowLayout());
+
+        buttonsPanel.add(buttonAddAnimal);
+        buttonsPanel.add(buttonAddBiome);
+        buttonsPanel.add(buttonDisplayMap);
+        buttonsPanel.add(buttonEndangeredAnimals);
+        buttonsPanel.add(buttonLogout);
+
+        mainPanel.add(buttonsPanel, BorderLayout.NORTH);
+        mainPanel.add(new JScrollPane(table), BorderLayout.CENTER);
+
+        setContentPane(mainPanel);
+    }
+
+    private void initActions() {
+        buttonAddAnimal.addActionListener(
+                e -> navigator.showAddAnimalForm()
+        );
+
+        buttonAddBiome.addActionListener(
+                e -> navigator.showAddBiomeForm()
+        );
+
+        buttonLogout.addActionListener(
+                e -> logout()
+        );
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -38,6 +80,7 @@ public class MAINVIEW  extends JFrame {
             }
         });
     }
+
     private void logout() {
         dispose();
         navigator.showLogin();
