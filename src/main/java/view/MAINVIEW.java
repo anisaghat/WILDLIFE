@@ -3,6 +3,7 @@ package view;
 import app.AppNavigator;
 
 import javax.swing.*;
+import controller.controllerMAINVIEW;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;
@@ -11,6 +12,7 @@ import java.awt.event.WindowEvent;
 public class MAINVIEW extends JFrame {
 
     private final AppNavigator navigator;
+    private controllerMAINVIEW controller;
 
     private JPanel mainPanel;
 
@@ -69,6 +71,10 @@ public class MAINVIEW extends JFrame {
                 e -> navigator.showAddBiomeForm()
         );
 
+        buttonEndangeredAnimals.addActionListener(
+                e -> controller.showEndangeredAnimals()
+        );
+
         buttonLogout.addActionListener(
                 e -> logout()
         );
@@ -79,6 +85,10 @@ public class MAINVIEW extends JFrame {
                 logout();
             }
         });
+    }
+
+    public void setController(controllerMAINVIEW controller) {
+        this.controller = controller;
     }
 
     private void logout() {

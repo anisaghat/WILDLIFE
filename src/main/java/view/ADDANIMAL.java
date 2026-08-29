@@ -26,6 +26,9 @@ public class ADDANIMAL extends JDialog
 
     public void initComponents()
     {
+        statusComboBox = new JComboBox<>();
+        speciesComboBox = new JComboBox<>();
+
         statusComboBox.addItem("EXTINCT");
         statusComboBox.addItem("ENDANGERED");
         statusComboBox.addItem("VULNERABLE");
