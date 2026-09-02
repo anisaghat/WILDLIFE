@@ -195,7 +195,9 @@ public class MAINVIEW extends JFrame {
         JPanel actionPanel = new JPanel();
 
         actionPanel.add(editButton);
+        editButton.addActionListener(e -> editSelectedAnimal());
         actionPanel.add(deleteButton);
+        deleteButton.addActionListener(e -> deleteSelectedAnimal());
 
         selectedAnimalPanel.add(
                 actionPanel,
@@ -399,6 +401,33 @@ public class MAINVIEW extends JFrame {
         animalImageLabel.setIcon(
                 new ImageIcon(scaledImage)
         );
+    }
+
+    private void deleteSelectedAnimal() {
+        Animal animalToDelete = getSelectedAnimal();
+        if (animalToDelete == null || controller == null) {
+            return;
+        }
+
+        int choice = JOptionPane.showConfirmDialog(
+                this,
+                "Are you sure you want to delete " + animalToDelete.getName() + "?",
+                "Confirm Deletion",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (choice == JOptionPane.YES_OPTION) {
+            controller.deleteAnimal(animalToDelete);
+        }
+    }
+
+    private void editSelectedAnimal() {
+        Animal animalToEdit = getSelectedAnimal();
+        if (animalToEdit == null || controller == null) {
+            return;
+        }
+
+        //controller.showEditAnimalForm(animalToEdit);
     }
 
     public void displayAnimals(List<Animal> animals) {

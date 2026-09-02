@@ -11,7 +11,7 @@ import model.dao.HabitatDAO;
 import model.dao.MammalDAO;
 import model.dao.ReptileDAO;
 import model.entities.ExtinctionStatut;
-import model.entities.animals.Animal;
+import model.entities.animals.*;
 import view.ADDANIMAL;
 import view.ADDBIOME;
 import view.ADDNEWHABITAT;
@@ -111,5 +111,19 @@ public class controllerMAINVIEW {
         view.dispose();
 
         application.start();
+    }
+
+    public void deleteAnimal(Animal animal) {
+        if (animal == null) return;
+
+        switch (animal.getClass().getSimpleName()) {
+            case "Mammal" -> mammalDAO.deleteByObject((Mammal) animal);
+            case "Bird" -> birdDAO.deleteByObject((Bird) animal);
+            case "Fish" -> fishDAO.deleteByObject((Fish) animal);
+            case "Reptile" -> reptileDAO.deleteByObject((Reptile) animal);
+            case "Amphibian" -> amphibianDAO.deleteByObject((Amphibian) animal);
+        }
+
+        refreshAnimals();
     }
 }
