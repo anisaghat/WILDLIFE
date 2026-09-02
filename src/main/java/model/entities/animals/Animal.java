@@ -3,9 +3,11 @@ package model.entities.animals;
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
 
+import java.util.UUID;
+
 public abstract class Animal
 {
-    private Integer id; // à auto incrément dans le base de donnée
+    private UUID id;
     private String imagePath;
     private String name;
     private float height;
@@ -15,7 +17,7 @@ public abstract class Animal
 
     private String description;
 
-    public Animal(int id, String imagePath, String name, float height, float weight, ExtinctionStatut status, Habitat habitat, String description) {
+    public Animal(UUID id, String imagePath, String name, float height, float weight, ExtinctionStatut status, Habitat habitat, String description) {
         this.id = id;
         this.imagePath = imagePath;
         this.name = name;
@@ -34,11 +36,11 @@ public abstract class Animal
         this.description = description;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

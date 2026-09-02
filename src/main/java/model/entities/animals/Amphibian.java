@@ -4,6 +4,7 @@ import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class Amphibian extends Animal {
 
@@ -39,7 +40,7 @@ public class Amphibian extends Animal {
         this.metamorphose = metamorphose;
     }
 
-    public Amphibian(int id, String imagePath, String name, float height, float weight, ExtinctionStatut status, Habitat habitat, String typeRespiration, boolean aquatique, boolean metamorphose, String description) {
+    public Amphibian(UUID id, String imagePath, String name, float height, float weight, ExtinctionStatut status, Habitat habitat, String typeRespiration, boolean aquatique, boolean metamorphose, String description) {
         super(id, imagePath, name, height, weight, status, habitat, description);
         this.typeRespiration = typeRespiration;
         this.aquatique = aquatique;

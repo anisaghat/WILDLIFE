@@ -3,6 +3,8 @@ package model.entities.animals;
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
 
+import java.util.UUID;
+
 public class Mammal extends Animal
 {
     private float dureeGestation;
@@ -15,7 +17,7 @@ public class Mammal extends Animal
         this.dureeGestation = dureeGestation;
     }
 
-    public Mammal(int id, String imagePath, String name, float height, float weight, ExtinctionStatut status, Habitat habitat, String description, float dureeGestation) {
+    public Mammal(UUID id, String imagePath, String name, float height, float weight, ExtinctionStatut status, Habitat habitat, String description, float dureeGestation) {
         super(id, imagePath, name, height, weight, status, habitat, description);
         this.dureeGestation = dureeGestation;
     }

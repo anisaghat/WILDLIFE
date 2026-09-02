@@ -1,5 +1,6 @@
 package model.entities;
 
+import model.dao.BiomeDAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package model.dao_csv;
+package model.dao;
 
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
@@ -7,14 +7,15 @@ import model.entities.animals.Fish;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class FishDAOCSV implements IDAO<Fish> {
+public class FishDAO implements IDAO<Fish, UUID> {
 
     private final File file;
     private final List<Fish> fishes = new ArrayList<>();
-    private final HabitatDAOCSV habitatDAO;
+    private final HabitatDAO habitatDAO;
 
-    public FishDAOCSV(String filePath, HabitatDAOCSV habitatDAO) {
+    public FishDAO(String filePath, HabitatDAO habitatDAO) {
         this.file = new File(filePath);
         this.habitatDAO = habitatDAO;
         loadFromFile();
@@ -33,7 +34,7 @@ public class FishDAOCSV implements IDAO<Fish> {
                 String[] token = line.split(",", -1);
                 if (token.length < 11) continue;
 
-                Integer id = Integer.parseInt(token[0].trim());
+                UUID id = UUID.fromString(token[0].trim());
                 String imagePath = token[1].trim();
                 String name = token[2].trim();
                 float height = Float.parseFloat(token[3].trim());
@@ -41,7 +42,7 @@ public class FishDAOCSV implements IDAO<Fish> {
                 ExtinctionStatut status = token[5].isBlank() ? null : ExtinctionStatut.valueOf(token[5].trim());
                 String depth = token[6].trim();
 
-                Integer habitatId = token[7].isBlank() ? null : Integer.parseInt(token[7].trim());
+                UUID habitatId = token[7].isBlank() ? null : UUID.fromString(token[7].trim());
                 Habitat habitat = habitatId == null ? null : habitatDAO.findById(habitatId);
 
                 String description = token[8].trim();
@@ -80,9 +81,9 @@ public class FishDAOCSV implements IDAO<Fish> {
     }
 
     @Override
-    public int create(Fish fish) {
-        if (fish == null) return -1;
-        if (findById(fish.getId()) != null) return -1;
+    public UUID create(Fish fish) {
+        if (fish == null) return null;
+        if (findById(fish.getId()) != null) return null;
 
         fishes.add(fish);
         saveAll();
@@ -104,7 +105,7 @@ public class FishDAOCSV implements IDAO<Fish> {
     }
 
     @Override
-    public boolean deleteById(Integer id) {
+    public boolean deleteById(UUID id) {
         if (id == null) return false;
 
         for (int i = 0; i < fishes.size(); i++) {
@@ -129,7 +130,7 @@ public class FishDAOCSV implements IDAO<Fish> {
     }
 
     @Override
-    public Fish findById(Integer id) {
+    public Fish findById(UUID id) {
         if (id == null) return null;
 
         for (Fish f : fishes) {

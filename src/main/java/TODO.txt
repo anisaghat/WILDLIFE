@@ -31,3 +31,9 @@ Il ne s’agit pas ici de gérer tous les événements de votre fenêtre princip
 fait entre vos classes graphiques et vos classes métiers, ce qui permet un découpage net entre la
 couche graphique de l’application (« GUI » pour Graphic User Interface » - la vue) et la couche
 des données (communément appelée « DAL » pour Data Access Layer » - le modèle)
+
+
+
+
+pour les habitats dans la combobox : récuprer depuis le formulaire la liste des habitats existants
+afficher les habitats dans la combobox

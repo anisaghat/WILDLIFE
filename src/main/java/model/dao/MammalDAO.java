@@ -1,4 +1,4 @@
-package model.dao_csv;
+package model.dao;
 
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
@@ -7,14 +7,15 @@ import model.entities.animals.Mammal;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class MammalDAOCSV implements IDAO<Mammal> {
+public class MammalDAO implements IDAO<Mammal, UUID> {
 
     private final File file;
     private final List<Mammal> mammals = new ArrayList<>();
-    private final HabitatDAOCSV habitatDAO;
+    private final HabitatDAO habitatDAO;
 
-    public MammalDAOCSV(String filePath, HabitatDAOCSV habitatDAO) {
+    public MammalDAO(String filePath, HabitatDAO habitatDAO) {
         this.file = new File(filePath);
         this.habitatDAO = habitatDAO;
         loadFromFile();
@@ -33,14 +34,14 @@ public class MammalDAOCSV implements IDAO<Mammal> {
                 String[] token = line.split(",", -1);
                 if (token.length < 9) continue;
 
-                Integer id = Integer.parseInt(token[0].trim());
+                UUID id = UUID.fromString(token[0].trim());
                 String imagePath = token[1].trim();
                 String name = token[2].trim();
                 float height = Float.parseFloat(token[3].trim());
                 float weight = Float.parseFloat(token[4].trim());
                 ExtinctionStatut status = token[5].isBlank() ? null : ExtinctionStatut.valueOf(token[5].trim());
 
-                Integer habitatId = token[6].isBlank() ? null : Integer.parseInt(token[6].trim());
+                UUID habitatId = token[6].isBlank() ? null : UUID.fromString(token[6].trim());
                 Habitat habitat = habitatId == null ? null : habitatDAO.findById(habitatId);
 
                 String description = token[7].trim();
@@ -76,9 +77,9 @@ public class MammalDAOCSV implements IDAO<Mammal> {
     }
 
     @Override
-    public int create(Mammal mammal) {
-        if (mammal == null) return -1;
-        if (findById(mammal.getId()) != null) return -1;
+    public UUID create(Mammal mammal) {
+        if (mammal == null) return null;
+        if (findById(mammal.getId()) != null) return null;
 
         mammals.add(mammal);
         saveAll();
@@ -100,7 +101,7 @@ public class MammalDAOCSV implements IDAO<Mammal> {
     }
 
     @Override
-    public boolean deleteById(Integer id) {
+    public boolean deleteById(UUID id) {
         if (id == null) return false;
 
         for (int i = 0; i < mammals.size(); i++) {
@@ -125,7 +126,7 @@ public class MammalDAOCSV implements IDAO<Mammal> {
     }
 
     @Override
-    public Mammal findById(Integer id) {
+    public Mammal findById(UUID id) {
         if (id == null) return null;
 
         for (Mammal m : mammals) {

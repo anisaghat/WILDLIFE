@@ -1,21 +1,35 @@
 package controller;
 
-import app.AppNavigator;
+import app.launchApplication;
 import model.authentication.MapAuthenticator;
+import model.dao.AmphibianDAO;
+import model.dao.AnimalRepository;
+import model.dao.BiomeDAO;
+import model.dao.BirdDAO;
+import model.dao.FishDAO;
+import model.dao.HabitatDAO;
+import model.dao.MammalDAO;
+import model.dao.ReptileDAO;
 import view.LOGIN;
-
-import java.util.Properties;
+import view.MAINVIEW;
 
 public class controllerLOGIN
 {
-    private LOGIN view ;
-    private MapAuthenticator model;
-    private AppNavigator navigator;
-    public controllerLOGIN(LOGIN view, MapAuthenticator model, AppNavigator navigator)
-    {
+    private final LOGIN view;
+    private final MapAuthenticator model;
+
+    private final launchApplication application;
+
+    public controllerLOGIN(
+            LOGIN view,
+            MapAuthenticator model,
+            launchApplication application
+
+    ) {
         this.view = view;
         this.model = model;
-        this.navigator = navigator;
+        this.application = application;
+
 
         view.addLoginListener(e -> handleLoginAttempt());
     }
@@ -33,8 +47,7 @@ public class controllerLOGIN
             if(registred)
             {
                 view.showMessage("account created successfully!");
-                view.dispose();
-                navigator.showMainWindow();
+                showMainWindow();
             }
             else {
                 view.showMessage("username already exists");
@@ -50,13 +63,18 @@ public class controllerLOGIN
 
             if(model.authenticate(username,password))
             {
-                navigator.showMainWindow();
-                view.dispose();
+                showMainWindow();
             }
             else
             {
                 view.showMessage("password is incorrect");
             }
         }
+    }
+
+    private void showMainWindow() {
+        view.dispose();
+
+        application.showMainWindow();
     }
 }

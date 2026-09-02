@@ -32,7 +32,7 @@
               <text value="Add a new animal"/>
             </properties>
           </component>
-          <component id="d7baf" class="javax.swing.JButton" binding="buttonDisplayMap">
+          <component id="d7baf" class="javax.swing.JButton" binding="buttonAddHabitat">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>

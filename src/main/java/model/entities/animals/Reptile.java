@@ -3,6 +3,8 @@ package model.entities.animals;
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
 
+import java.util.UUID;
+
 public class Reptile extends Animal {
 
     private String reproduction; // ovipare, vivipare, ovovivipare
@@ -24,7 +26,7 @@ public class Reptile extends Animal {
         this.venomous = venomous;
     }
 
-    public Reptile(int id, String imagePath, String name, float height, float weight, ExtinctionStatut status, Habitat habitat, String description, String reproduction, boolean venomous) {
+    public Reptile(UUID id, String imagePath, String name, float height, float weight, ExtinctionStatut status, Habitat habitat, String description, String reproduction, boolean venomous) {
         super(id, imagePath, name, height, weight, status, habitat, description);
         this.reproduction = reproduction;
         this.venomous = venomous;

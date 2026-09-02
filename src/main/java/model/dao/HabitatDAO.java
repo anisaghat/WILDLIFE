@@ -1,62 +1,137 @@
 package model.dao;
 
+import model.entities.Biome;
 import model.entities.Habitat;
 
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
+import java.util.UUID;
 
-public class HabitatDAO {
+public class HabitatDAO implements IDAO<Habitat, UUID> {
 
-    private final ConnectDB connectDB;
-    private final ArrayList<Habitat> habitatsList;
+    private final File file;
+    private final List<Habitat> habitats = new ArrayList<>();
+    private final BiomeDAO biomeDAO;
 
-
-    public HabitatDAO() {
-        this.connectDB = new ConnectDB();
-        this.habitatsList = new ArrayList<>();
+    public HabitatDAO(String filePath, BiomeDAO biomeDAO) {
+        this.file = new File(filePath);
+        this.biomeDAO = biomeDAO;
+        loadFromFile();
     }
 
-    public HabitatDAO(ConnectDB connectDB) {
-        this.connectDB = connectDB;
-        this.habitatsList = new ArrayList<>();
+
+    private void loadFromFile() {
+        habitats.clear();
+        if (!file.exists()) return;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                if (line.isBlank()) continue;
+
+                String[] token = line.split(",", -1);
+                if (token.length < 3) continue;
+
+                UUID id = UUID.fromString(token[0].trim());
+                String name = token[1].trim();
+
+                UUID biomeId = token[2].isBlank() ? null : UUID.fromString(token[2].trim());
+                Biome biome = biomeId == null ? null : biomeDAO.findById(biomeId);
+
+                Habitat habitat = new Habitat(name, biome);
+                habitats.add(habitat);
+            }
+
+        } catch (IOException e) {
+            System.err.println("Erreur IO : " + e.getMessage());
+        }
     }
 
-    public ArrayList<Habitat> getAllHabitats() {
-        return this.habitatsList;
+    private void saveAll() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, false))) {
+            for (Habitat h : habitats) {
+                String idStr = h.getId().toString();
+                String nameStr = h.getName() == null ? "" : h.getName();
+                String biomeStr = h.getBiome() == null ? "" : h.getBiome().getId().toString();
+
+                bw.write(idStr + "," + nameStr + "," + biomeStr);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur IO : " + e.getMessage());
+        }
     }
 
-    public Habitat getById(Integer id)
-    {
-        for(Habitat entity : habitatsList) {
-            if (Objects.equals(entity.getId(), id)) {
-                return entity;
+    @Override
+    public UUID create(Habitat habitat) {
+        if (habitat == null) return null;
+
+        if (habitat.getId() == null) {
+            habitat.setId(UUID.randomUUID());
+        }
+
+        if (findById(habitat.getId()) != null) return null;
+
+        habitats.add(habitat);
+        saveAll();
+        return habitat.getId();
+    }
+
+    @Override
+    public boolean update(Habitat h) {
+        if (h == null) return false;
+
+        for (int i = 0; i < habitats.size(); i++) {
+            if (habitats.get(i).getId().equals(h.getId())) {
+                habitats.set(i, h);
+                saveAll();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteById(UUID id) {
+        if (id == null) return false;
+
+        for (int i = 0; i < habitats.size(); i++) {
+            if (habitats.get(i).getId().equals(id)) {
+                habitats.remove(i);
+                saveAll();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteByObject(Habitat habitat) {
+        if (habitat == null) return false;
+
+        if (habitats.remove(habitat)) {
+            saveAll();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Habitat findById(UUID id) {
+        if (id == null) return null;
+
+        for (Habitat h : habitats) {
+            if (h.getId().equals(id)) {
+                return h;
             }
         }
         return null;
     }
 
-    public ArrayList<Habitat> load()
-    {
-        return this.habitatsList;
+    @Override
+    public List<Habitat> findAll() {
+        return new ArrayList<>(habitats);
     }
-
-    public void save(Habitat habitat)
-    {
-
-    }
-
-    public void delete(Habitat habitat) {
-        if (habitat != null && habitat.getId() != null) {
-            this.delete(habitat.getId());
-        }
-    }
-
-    public void delete(Integer id)
-    {
-        if(id!= null)
-        {
-            // ici delete dans le base de donnée encore une fois mais à voir parce que idk yet
-        }
-    }
-
 }

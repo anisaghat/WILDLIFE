@@ -3,6 +3,8 @@ package model.entities.animals;
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
 
+import java.util.UUID;
+
 public class Bird extends Animal
 {
     private float wingspan;
@@ -25,7 +27,7 @@ public class Bird extends Animal
         this.canFly = canFly;
     }
 
-    public Bird(int id, String imagePath, String name, float height, float weight, ExtinctionStatut status, Habitat habitat, String description, float wingspan, boolean canFly) {
+    public Bird(UUID id, String imagePath, String name, float height, float weight, ExtinctionStatut status, Habitat habitat, String description, float wingspan, boolean canFly) {
         super(id, imagePath, name, height, weight, status, habitat, description);
         this.wingspan = wingspan;
         this.canFly = canFly;

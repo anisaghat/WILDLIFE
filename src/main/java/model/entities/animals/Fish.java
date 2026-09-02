@@ -3,6 +3,8 @@ package model.entities.animals;
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
 
+import java.util.UUID;
+
 public class Fish extends Animal {
 
     private String typeOfWater; // eau douce ou salée
@@ -33,7 +35,7 @@ public class Fish extends Animal {
         this.depth = depth;
     }
 
-    public Fish(int id, String imagePath, String name, float height, float weight, ExtinctionStatut status, String depth, Habitat habitat, String description, String typeOfWater, String bones) {
+    public Fish(UUID id, String imagePath, String name, float height, float weight, ExtinctionStatut status, String depth, Habitat habitat, String description, String typeOfWater, String bones) {
         super(id, imagePath, name, height, weight, status, habitat, description);
         this.typeOfWater = typeOfWater;
         this.bones = bones;

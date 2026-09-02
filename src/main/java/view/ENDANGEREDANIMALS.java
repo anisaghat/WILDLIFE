@@ -22,7 +22,7 @@ public class ENDANGEREDANIMALS extends JDialog {
 
     private void initComponents(List<Animal> animals) {
         String[] columns = {
-                "ID", "Name", "Type", "Habitat", "Status", "Height", "Weight"
+                 "Name", "Habitat",  "Height", "Weight", "Status"
         };
 
         DefaultTableModel tableModel = new DefaultTableModel(columns, 0) {
@@ -38,13 +38,11 @@ public class ENDANGEREDANIMALS extends JDialog {
                     : animal.getHabitat().getName();
 
             tableModel.addRow(new Object[]{
-                    animal.getId(),
                     animal.getName(),
-                    animal.getClass().getSimpleName(),
                     habitatName,
-                    animal.getStatus(),
                     animal.getHeight(),
-                    animal.getWeight()
+                    animal.getWeight(),
+                    animal.getStatus()
             });
         }
 

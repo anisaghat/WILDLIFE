@@ -1,8 +1,10 @@
 package model.entities;
 
+import java.util.UUID;
+
 public class Habitat {
 
-    private Integer id;
+    private UUID id;
     private String name;
     private Biome biome;
 
@@ -21,17 +23,12 @@ public class Habitat {
     public void setBiome(Biome biome) {
         this.biome = biome;
     }
-    public Integer getId() { return id; }
+    public UUID getId() { return id; }
 
-    public void setId(Integer n) { id = n; }
+    public void setId(UUID n) { id = n; }
 
     public Habitat(String name, Biome biome) {
-        this.name = name;
-        this.biome = biome;
-    }
-
-    public Habitat(Integer id, String name, Biome biome) {
-        this.id=id;
+        this.id=UUID.randomUUID();
         this.name=name;
         this.biome=biome;
     }
