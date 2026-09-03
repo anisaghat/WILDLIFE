@@ -1,6 +1,7 @@
 package view;
 
 import model.entities.Habitat;
+import model.entities.animals.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -144,11 +145,6 @@ public class ADDANIMAL extends JDialog
     }
 
 
-    public ADDANIMAL()
-    {
-        this(List.of());
-    }
-
     public ADDANIMAL(List<Habitat> habitats)
     {
         setTitle("Add an animal");
@@ -157,6 +153,18 @@ public class ADDANIMAL extends JDialog
         setLocationRelativeTo(null);
 
         initComponents(habitats);
+    }
+
+    // Surcharge du constructeur pour l'édition d'un animal existant
+    public ADDANIMAL( List<Habitat> habitats, Animal animalToEdit)
+    {
+        setTitle("Edit an animal");
+        setModal(true);
+        setSize(450, 600);
+        setLocationRelativeTo(null);
+
+        initComponents(habitats);
+        fillWithAnimalData(animalToEdit);
     }
 
 
@@ -387,5 +395,53 @@ public class ADDANIMAL extends JDialog
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         setContentPane(mainPanel);
+    }
+
+    public void fillWithAnimalData(Animal animal)
+    {
+        nameField.setText(animal.getName());
+        heightField.setText(String.valueOf(animal.getHeight()));
+        weightField.setText(String.valueOf(animal.getWeight()));
+        statusComboBox.setSelectedItem(animal.getStatus().toString());
+        habitatComboBox.setSelectedItem(animal.getHabitat());
+        descriptionField.setText(animal.getDescription());
+        imagepathField.setText(animal.getImagePath());
+
+
+        // remplir les champs specifiques à l'espece
+        switch (animal) {
+            case Mammal mammal -> {
+                speciesComboBox.setSelectedItem("mammal");
+                gestationField.setText(String.valueOf(mammal.getDureeGestation()));
+            }
+            case Bird bird -> {
+                speciesComboBox.setSelectedItem("bird");
+                wingspanField.setText(String.valueOf(bird.getWingspan()));
+                canFlyCheckBox.setSelected(bird.isCanFly());
+            }
+            case Fish fish -> {
+                speciesComboBox.setSelectedItem("fish");
+                waterTypeComboBox.setSelectedItem(fish.getTypeOfWater());
+                bonesComboBox.setSelectedItem(fish.getBones());
+                depthField.setText(String.valueOf(fish.getDepth()));
+            }
+            case Reptile reptile -> {
+                speciesComboBox.setSelectedItem("reptile");
+                reproductionComboBox.setSelectedItem(reptile.getReproduction());
+                venomousCheckBox.setSelected(reptile.isVenomous());
+            }
+            case Amphibian amphibian -> {
+                speciesComboBox.setSelectedItem("amphibian");
+                respirationComboBox.setSelectedItem(amphibian.getTypeRespiration());
+                aquaticCheckBox.setSelected(amphibian.isAquatique());
+                metamorphosisCheckBox.setSelected(amphibian.isMetamorphose());
+            }
+            default -> {
+            }
+        }
+
+        speciesComboBox.setEnabled(false);
+
+
     }
 }

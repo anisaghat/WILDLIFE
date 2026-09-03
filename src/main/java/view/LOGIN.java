@@ -5,12 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-import javafx.application.*;
-
-import static java.lang.System.exit;
-
-
 public class LOGIN extends JDialog {
 
     private JPanel MainPanel;

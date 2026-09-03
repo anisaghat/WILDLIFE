@@ -3,13 +3,14 @@ package app;
 import controller.controllerLOGIN;
 import controller.controllerMAINVIEW;
 import model.authentication.MapAuthenticator;
+import model.authentication.PropertiesAuthenticator;
 import model.dao.*;
 import view.LOGIN;
 import view.MAINVIEW;
 
 public class launchApplication {
 
-    private final MapAuthenticator authenticator;
+    private final PropertiesAuthenticator authenticator;
 
     private final BiomeDAO biomeDAO;
     private final HabitatDAO habitatDAO;
@@ -24,7 +25,7 @@ public class launchApplication {
 
     public launchApplication() {
 
-        authenticator = new MapAuthenticator();
+        authenticator = new PropertiesAuthenticator( "user.properties");
 
         biomeDAO =
                 new BiomeDAO("data/biomes.csv");

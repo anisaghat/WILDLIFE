@@ -427,7 +427,7 @@ public class MAINVIEW extends JFrame {
             return;
         }
 
-        //controller.showEditAnimalForm(animalToEdit);
+        controller.editAnimal(animalToEdit);
     }
 
     public void displayAnimals(List<Animal> animals) {

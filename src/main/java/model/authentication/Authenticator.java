@@ -9,12 +9,13 @@ public abstract class Authenticator {
         return false;
     }
 
-    protected abstract boolean isLoginExists(String username) ;
+    public abstract boolean isLoginExists(String username) ;
 
     protected abstract String getPassword(String username) ;
 
-    protected abstract boolean register(String username, String password) ;
+    public abstract boolean register(String username, String password) ;
 }
 
 
-// ici ça utilise bien le patron Template Method mais va relire pourquoi
+// ici ça utilise bien le patron Template Method car on peut l'utiliser avec 2 classes différentes
+// les méthodes abstraites seront implémentées différemment selon la classe

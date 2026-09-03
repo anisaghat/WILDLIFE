@@ -24,6 +24,7 @@ public class controllerADDANIMAL {
     private final FishDAO fishDAO;
     private final ReptileDAO reptileDAO;
     private final AmphibianDAO amphibianDAO;
+    private Animal animalToEdit;
 
     public controllerADDANIMAL(
             ADDANIMAL view,
@@ -45,8 +46,26 @@ public class controllerADDANIMAL {
         );
     }
 
+    public controllerADDANIMAL (
+            ADDANIMAL view,
+            MammalDAO mammalDAO,
+            BirdDAO birdDAO,
+            FishDAO fishDAO,
+            ReptileDAO reptileDAO,
+            AmphibianDAO amphibianDAO,
+            Animal animalToEdit
+    ) {
+        this(view, mammalDAO, birdDAO, fishDAO, reptileDAO, amphibianDAO);
+        this.animalToEdit = animalToEdit;
+        view.getSaveButton().addActionListener(
+                e -> saveAnimal()
+        );
+    }
+
     private void saveAnimal() {
         Animal animal = null;
+        // la ligne en dessous dit en gros si ya 1 animaltoedit tu reprends son id sinon t'en crée un nv pcq cv dire qu'on est en mode création
+        UUID animalId = animalToEdit != null ? animalToEdit.getId() : UUID.randomUUID();
 
         String name = view.getAnimalNameFromForm();
         String height = view.getAnimalHeightFromForm();
@@ -59,7 +78,6 @@ public class controllerADDANIMAL {
         float animalHeight = Float.parseFloat(height);
         float animalWeight = Float.parseFloat(weight);
         ExtinctionStatut extinctionStatut = ExtinctionStatut.valueOf(status);
-        UUID animalId = UUID.randomUUID();
 
         switch(species) {
             case "mammal":
@@ -151,15 +169,35 @@ public class controllerADDANIMAL {
         }
 
         if (animal instanceof Mammal mammal) {
-            mammalDAO.create(mammal);
+            if (animalToEdit != null) {
+                mammalDAO.update(mammal);
+            } else {
+                mammalDAO.create(mammal);
+            }
         } else if (animal instanceof Bird bird) {
-            birdDAO.create(bird);
+            if (animalToEdit != null) {
+                birdDAO.update(bird);
+            } else {
+                birdDAO.create(bird);
+            }
         } else if (animal instanceof Fish fish) {
-            fishDAO.create(fish);
+            if (animalToEdit != null) {
+                fishDAO.update(fish);
+            } else {
+                fishDAO.create(fish);
+            }
         } else if (animal instanceof Reptile reptile) {
-            reptileDAO.create(reptile);
+            if (animalToEdit != null) {
+                reptileDAO.update(reptile);
+            } else {
+                reptileDAO.create(reptile);
+            }
         } else if (animal instanceof Amphibian amphibian) {
-            amphibianDAO.create(amphibian);
+            if (animalToEdit != null) {
+                amphibianDAO.update(amphibian);
+            } else {
+                amphibianDAO.create(amphibian);
+            }
         }
 
         if (animal != null) {

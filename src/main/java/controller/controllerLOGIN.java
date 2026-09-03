@@ -1,6 +1,7 @@
 package controller;
 
 import app.launchApplication;
+import model.authentication.Authenticator;
 import model.authentication.MapAuthenticator;
 import model.dao.AmphibianDAO;
 import model.dao.AnimalRepository;
@@ -16,13 +17,13 @@ import view.MAINVIEW;
 public class controllerLOGIN
 {
     private final LOGIN view;
-    private final MapAuthenticator model;
+    private final Authenticator model;
 
     private final launchApplication application;
 
     public controllerLOGIN(
             LOGIN view,
-            MapAuthenticator model,
+            Authenticator model,
             launchApplication application
 
     ) {

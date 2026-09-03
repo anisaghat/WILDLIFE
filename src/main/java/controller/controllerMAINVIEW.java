@@ -1,6 +1,7 @@
 package controller;
 
 import app.launchApplication;
+import model.authentication.Authenticator;
 import model.authentication.MapAuthenticator;
 import model.dao.AmphibianDAO;
 import model.dao.AnimalRepository;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class controllerMAINVIEW {
     private final MAINVIEW view;
-    private final MapAuthenticator authenticator;
+    private final Authenticator authenticator;
     private final AnimalRepository animalRepository;
     private final BiomeDAO biomeDAO;
     private final HabitatDAO habitatDAO;
@@ -37,7 +38,7 @@ public class controllerMAINVIEW {
 
     public controllerMAINVIEW(
             MAINVIEW view,
-            MapAuthenticator authenticator,
+            Authenticator authenticator,
             launchApplication application,
             AnimalRepository animalRepository,
             BiomeDAO biomeDAO,
@@ -124,6 +125,24 @@ public class controllerMAINVIEW {
             case "Amphibian" -> amphibianDAO.deleteByObject((Amphibian) animal);
         }
 
+        refreshAnimals();
+    }
+
+    public void editAnimal(Animal animal) {
+        if (animal == null) return;
+
+        ADDANIMAL form = new ADDANIMAL(habitatDAO.findAll(), animal);
+        new controllerADDANIMAL(
+                form,
+                mammalDAO,
+                birdDAO,
+                fishDAO,
+                reptileDAO,
+                amphibianDAO,
+                animal
+        );
+
+        form.setVisible(true);
         refreshAnimals();
     }
 }
