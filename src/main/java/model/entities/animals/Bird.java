@@ -48,7 +48,7 @@ public class Bird extends Animal implements Serializable
         if (!(o instanceof Bird bird)) return false;
 
         if (Float.compare(getWingspan(), bird.getWingspan()) != 0) return false;
-        return isCanFly() == bird.isCanFly();
+        return super.equals(bird) && isCanFly() == bird.isCanFly();
     }
 
     @Override

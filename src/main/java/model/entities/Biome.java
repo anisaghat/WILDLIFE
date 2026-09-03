@@ -9,7 +9,7 @@ public class Biome  implements Serializable {
     private String name;
     private String description;
     private String temperature;
-    private String humidity; // précipitation??
+    private String humidity;
     private String dominantVegetation;
 
 

@@ -40,53 +40,5 @@ public class AnimalRepository {
         return animals;
     }
 
-    public boolean delete(Animal animal) {
 
-        if (animal instanceof Mammal mammal) {
-            return mammalDAO.deleteByObject(mammal);
-        }
-
-        if (animal instanceof Bird bird) {
-            return birdDAO.deleteByObject(bird);
-        }
-
-        if (animal instanceof Fish fish) {
-            return fishDAO.deleteByObject(fish);
-        }
-
-        if (animal instanceof Reptile reptile) {
-            return reptileDAO.deleteByObject(reptile);
-        }
-
-        if (animal instanceof Amphibian amphibian) {
-            return amphibianDAO.deleteByObject(amphibian);
-        }
-
-        return false;
-    }
-
-    public boolean update(Animal animal) {
-
-        if (animal instanceof Mammal mammal) {
-            return mammalDAO.update(mammal);
-        }
-
-        if (animal instanceof Bird bird) {
-            return birdDAO.update(bird);
-        }
-
-        if (animal instanceof Fish fish) {
-            return fishDAO.update(fish);
-        }
-
-        if (animal instanceof Reptile reptile) {
-            return reptileDAO.update(reptile);
-        }
-
-        if (animal instanceof Amphibian amphibian) {
-            return amphibianDAO.update(amphibian);
-        }
-
-        return false;
-    }
 }

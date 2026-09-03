@@ -47,7 +47,7 @@ public class Reptile extends Animal  implements Serializable  {
         if (!(o instanceof Reptile reptile)) return false;
 
         if (isVenomous() != reptile.isVenomous()) return false;
-        return getReproduction() != null ? getReproduction().equals(reptile.getReproduction()) : reptile.getReproduction() == null;
+        return super.equals(reptile) && (getReproduction() != null ? getReproduction().equals(reptile.getReproduction()) : reptile.getReproduction() == null);
     }
 
     @Override

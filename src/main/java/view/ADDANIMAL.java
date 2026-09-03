@@ -5,6 +5,9 @@ import model.entities.animals.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class ADDANIMAL extends JDialog
@@ -203,7 +206,14 @@ public class ADDANIMAL extends JDialog
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
             if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-                imagepathField.setText(fileChooser.getSelectedFile().getAbsolutePath());
+
+                File selectedFilePath = fileChooser.getSelectedFile();
+                Path projectPath = Paths.get("").toAbsolutePath();
+                Path imagePath = selectedFilePath.toPath().toAbsolutePath();
+
+                Path relativePath = projectPath.relativize(imagePath);
+                imagepathField.setText(relativePath.toString());
+
             }
         });
 

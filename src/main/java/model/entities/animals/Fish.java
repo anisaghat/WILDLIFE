@@ -60,7 +60,7 @@ public class Fish extends Animal implements Serializable {
         if (getTypeOfWater() != null ? !getTypeOfWater().equals(fish.getTypeOfWater()) : fish.getTypeOfWater() != null)
             return false;
         if (getBones() != null ? !getBones().equals(fish.getBones()) : fish.getBones() != null) return false;
-        return getDepth() != null ? getDepth().equals(fish.getDepth()) : fish.getDepth() == null;
+        return super.equals(fish) && (getDepth() != null ? getDepth().equals(fish.getDepth()) : fish.getDepth() == null);
     }
 
     @Override

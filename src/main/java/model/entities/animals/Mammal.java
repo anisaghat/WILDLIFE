@@ -35,7 +35,7 @@ public class Mammal extends Animal implements Serializable
         if (this == o) return true;
         if (!(o instanceof Mammal mammal)) return false;
 
-        return Float.compare(getDureeGestation(), mammal.getDureeGestation()) == 0;
+        return super.equals(mammal) && Float.compare(getDureeGestation(), mammal.getDureeGestation()) == 0;
     }
 
     @Override

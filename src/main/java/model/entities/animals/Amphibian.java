@@ -62,7 +62,14 @@ public class Amphibian extends Animal implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Amphibian amphibian)) return false;
-        return isAquatique() == amphibian.isAquatique() && isMetamorphose() == amphibian.isMetamorphose() && Objects.equals(getTypeRespiration(), amphibian.getTypeRespiration());
+        return super.equals(amphibian) && isAquatique() == amphibian.isAquatique() && isMetamorphose() == amphibian.isMetamorphose() && Objects.equals(getTypeRespiration(), amphibian.getTypeRespiration());
     }
 
+    @Override
+    public int hashCode() {
+        int result = getTypeRespiration().hashCode();
+        result = 31 * result + Boolean.hashCode(isAquatique());
+        result = 31 * result + Boolean.hashCode(isMetamorphose());
+        return result;
+    }
 }
