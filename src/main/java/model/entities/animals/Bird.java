@@ -3,9 +3,10 @@ package model.entities.animals;
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Bird extends Animal
+public class Bird extends Animal implements Serializable
 {
     private float wingspan;
 

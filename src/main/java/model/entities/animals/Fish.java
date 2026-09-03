@@ -3,9 +3,10 @@ package model.entities.animals;
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Fish extends Animal {
+public class Fish extends Animal implements Serializable {
 
     private String typeOfWater; // eau douce ou salée
     private String bones; // poisson osseux ou cartilagineux

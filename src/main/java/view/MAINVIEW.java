@@ -62,6 +62,12 @@ public class MAINVIEW extends JFrame {
     private  JButton buttonLogout =
             new JButton("Logout");
 
+    private final JMenuItem exportItem =
+            new JMenuItem("Exporter la base (binaire)");
+
+    private final JMenuItem importItem =
+            new JMenuItem("Importer la base (binaire)");
+
     public MAINVIEW() {
         initComponents();
         initActions();
@@ -87,6 +93,14 @@ public class MAINVIEW extends JFrame {
         buttonsPanel.add(buttonAddHabitat);
         buttonsPanel.add(buttonEndangeredAnimals);
         buttonsPanel.add(buttonLogout);
+
+        JMenu binaryDatabaseMenu = new JMenu("Base binaire");
+        binaryDatabaseMenu.add(exportItem);
+        binaryDatabaseMenu.add(importItem);
+
+        JMenuBar binaryDatabaseMenuBar = new JMenuBar();
+        binaryDatabaseMenuBar.add(binaryDatabaseMenu);
+        buttonsPanel.add(binaryDatabaseMenuBar);
 
         //==============
         // table des animaux
@@ -250,6 +264,14 @@ public class MAINVIEW extends JFrame {
 
         buttonLogout.addActionListener(
                 e -> controller.logout()
+        );
+
+        exportItem.addActionListener(
+                e -> controller.exportAnimalsToBinary()
+        );
+
+        importItem.addActionListener(
+                e -> controller.importAnimalsFromBinary()
         );
 
 

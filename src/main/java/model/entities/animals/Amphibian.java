@@ -3,10 +3,11 @@ package model.entities.animals;
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Amphibian extends Animal {
+public class Amphibian extends Animal implements Serializable {
 
     // les amphibiens ont une double vie eau/terre
 

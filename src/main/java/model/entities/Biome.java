@@ -1,8 +1,9 @@
 package model.entities;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Biome {
+public class Biome  implements Serializable {
 
     private UUID id;
     private String name;

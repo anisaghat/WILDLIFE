@@ -3,9 +3,10 @@ package model.entities.animals;
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public abstract class Animal
+public abstract class Animal implements Serializable
 {
     private UUID id;
     private String imagePath;

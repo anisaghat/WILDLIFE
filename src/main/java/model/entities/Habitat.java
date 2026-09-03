@@ -1,8 +1,9 @@
 package model.entities;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Habitat {
+public class Habitat implements Serializable  {
 
     private UUID id;
     private String name;

@@ -3,9 +3,10 @@ package model.entities.animals;
 import model.entities.ExtinctionStatut;
 import model.entities.Habitat;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Reptile extends Animal {
+public class Reptile extends Animal  implements Serializable  {
 
     private String reproduction; // ovipare, vivipare, ovovivipare
     private boolean venomous;

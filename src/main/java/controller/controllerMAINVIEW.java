@@ -3,14 +3,7 @@ package controller;
 import app.launchApplication;
 import model.authentication.Authenticator;
 import model.authentication.MapAuthenticator;
-import model.dao.AmphibianDAO;
-import model.dao.AnimalRepository;
-import model.dao.BiomeDAO;
-import model.dao.BirdDAO;
-import model.dao.FishDAO;
-import model.dao.HabitatDAO;
-import model.dao.MammalDAO;
-import model.dao.ReptileDAO;
+import model.dao.*;
 import model.entities.ExtinctionStatut;
 import model.entities.animals.*;
 import view.ADDANIMAL;
@@ -35,6 +28,8 @@ public class controllerMAINVIEW {
     private final ReptileDAO reptileDAO;
     private final AmphibianDAO amphibianDAO;
     private final launchApplication application;
+
+    private final AnimalBinaryDAO animalBinary = new AnimalBinaryDAO("data/backup/animals.dat");
 
     public controllerMAINVIEW(
             MAINVIEW view,
@@ -144,5 +139,27 @@ public class controllerMAINVIEW {
 
         form.setVisible(true);
         refreshAnimals();
+    }
+
+
+    public void exportAnimalsToBinary() {
+        List<Animal> allAnimals = animalRepository.findAll();
+        animalBinary.saveToFile(allAnimals);
+    }
+
+    public void importAnimalsFromBinary() {
+        List<Animal> importedAnimals = animalBinary.loadFromFile();
+        if (importedAnimals != null) {
+            for (Animal animal : importedAnimals) {
+                switch (animal.getClass().getSimpleName()) {
+                    case "Mammal" -> mammalDAO.create((Mammal) animal);
+                    case "Bird" -> birdDAO.create((Bird) animal);
+                    case "Fish" -> fishDAO.create((Fish) animal);
+                    case "Reptile" -> reptileDAO.create((Reptile) animal);
+                    case "Amphibian" -> amphibianDAO.create((Amphibian) animal);
+                }
+            }
+            refreshAnimals();
+        }
     }
 }
